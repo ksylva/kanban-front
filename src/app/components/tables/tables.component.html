@@ -1,0 +1,70 @@
+<div class="card">
+  <p-toast position="top-center"></p-toast>
+  <h1>Liste des tableaux kanban</h1>
+  <div class="p-mb-3">
+    <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
+    <button pButton pRipple type="button" icon="pi pi-plus-circle"
+            class="p-button-rounded p-ml-0" label="Ajouter" (click)="addBoardDialog()"></button>
+  </div>
+  <p-table [value]="tables" [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nom</th>
+        <th>Action</th>
+        <!--<th>Company</th>
+        <th>Representative</th>-->
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-table>
+      <tr>
+        <td>{{table.name}}</td>
+        <td>
+          <span class="p-buttonset">
+              <!--<button pButton type="button" label="Save" icon="pi pi-plus-circle" class="p-button-rounded"></button>-->
+              <button pButton type="button" label="Afficher" icon="pi pi-eye" class="p-button-rounded p-mr-1"></button>
+              <button pButton type="button" label="Editer" icon="pi pi-pencil" class="p-button-rounded p-mr-1"></button>
+              <button pButton type="button" label="Supprimer" icon="pi pi-trash" class="p-button-rounded"></button>
+          </span>
+        </td>
+        <!--<td>{{tables.country.name}}</td>
+        <td>{{tables.company}}</td>
+        <td>{{tables.representative.name}}</td>-->
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- Add modal -->
+<p-dialog [(visible)]="display" class="p-p-2">
+  <ng-template pTemplate="header">
+    <h2>Nouveau tableau</h2>
+  </ng-template>
+  <form [formGroup]="boardForm" (ngSubmit)="addBoard()">
+    <div class="p-field p-grid">
+      <label for="table-name" class="p-col-fixed" style="width:150px">Nom du tableau</label>
+      <div class="p-col">
+        <input id="table-name" type="text" pInputText formControlName="name"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+    <label for="section1-name" class="p-col-fixed" style="width:150px">Sections</label>
+    <div class="p-field p-grid" formArrayName="sections"
+         *ngFor="let section of sections.controls; let i = index">
+      <div class="p-col" [formGroupName]="i">
+        <input id="section1-name" type="text" pInputText formControlName="libelle"
+               placeholder="Section {{(i + 1)}}" class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col">
+        <button pButton type="submit" label="Créer" [disabled]="!boardForm.valid" class="p-d-block p-mx-auto"></button>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+<!-- End of add modal -->

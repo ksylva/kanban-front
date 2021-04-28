@@ -5,13 +5,13 @@ export interface Kanban {
 }
 
 export interface Section {
-  // idSection: number;
+  idSection: number;
   libelle: string;
   fiches: Card[];
 }
 
 export interface Card {
-  // idFiche: number;
+  idFiche: number;
   dateButoire: number;
   duree: number;
   lieu: string;
@@ -26,4 +26,13 @@ export interface User {
   name: string;
   enabled: boolean;
   fiches: Card[];
+}
+
+export interface BoardInfo {
+  name: string;
+  sections: SectionInfo[];
+}
+
+export interface SectionInfo {
+  libelle: string;
 }
