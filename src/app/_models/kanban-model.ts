@@ -20,6 +20,15 @@ export interface Card {
   user: User[];
   tags: any[];
 }
+export interface CardInfo {
+  idFiche: number;
+  dateButoire: number;
+  duree: number;
+  lieu: string;
+  url: string;
+  note: string;
+  section: Section;
+}
 
 export interface User {
   idUser: number;

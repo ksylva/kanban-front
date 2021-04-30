@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {BoardInfo, Card, Kanban, Section, Tag} from '../_models/kanban-model';
+import {BoardInfo, Card, CardInfo, Kanban, Section, Tag} from '../_models/kanban-model';
 
 
 @Injectable({
@@ -31,8 +31,8 @@ export class KanbanBoardService {
   /*saveCard(value: Card) {
     return this.httpClient.post( this.rootUrl + '/board/add', value);
   }*/
-  saveCard(card: Card) {
-    return this.httpClient.post<Card>(this.rootUrl + '/card/add', card);
+  saveCard(card: CardInfo) {
+    return this.httpClient.post<CardInfo>(this.rootUrl + '/card/add', card);
   }
   getTags(): Observable<Tag[]> {
     /*console.log(`The content of route2: ${this.rootUrl}`);*/
