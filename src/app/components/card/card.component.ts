@@ -29,12 +29,22 @@ export class CardComponent implements OnInit {
       lieu: ['', Validators.required],
       url: ['', Validators.required],
       note: ['', Validators.required],
-      users: this.fBuilder.array([
+      section: ['', Validators.required],
+      /*users: this.fBuilder.array([
         this.fBuilder.group({
-          name: ['', Validators.required]
+          idUser: ['', Validators.required]
         }),
       ]),
-      tags: ['', Validators.required],
+      tags: this.fBuilder.array([
+        this.fBuilder.group({
+          idTag: ['', Validators.required]
+        }),
+      ]),
+      sections: this.fBuilder.array([
+        this.fBuilder.group({
+          idSection: ['', Validators.required]
+        }),
+      ]),*/
     });
   }
   // tslint:disable-next-line:typedef
