@@ -1,1 +1,152 @@
-<p>card works!</p>
+<div class="card">
+  <p-toast position="top-center"></p-toast>
+  <h1>Liste des fiches</h1>
+  <div class="p-mb-3">
+    <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+    <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
+    <button pButton pRipple type="button" icon="pi pi-plus-circle"
+            class="p-button-rounded p-ml-0" label="Ajouter" (click)="addCardDialog()"></button>
+  </div>
+  <p-table [value]="cards" [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Date butoire</th>
+        <th>Duree</th>
+        <th>Enabled</th>
+        <th>Lieu</th>
+        <th>Note</th>
+        <th>Url</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-card>
+      <tr>
+        <td>{{card.dateButoire}}</td>
+        <td>{{card.duree}}</td>
+        <td>{{card.enabled}}</td>
+        <td>{{card.lieu}}</td>
+        <td>{{card.note}}</td>
+        <td>{{card.url}}</td>
+        <td>
+          <span class="p-buttonset">
+              <button pButton type="button" label="Afficher" icon="pi pi-eye" class="p-button-rounded p-mr-1"></button>
+              <button pButton type="button" label="Editer" icon="pi pi-pencil" class="p-button-rounded p-mr-1"></button>
+              <button pButton type="button" label="Supprimer" icon="pi pi-trash" class="p-button-rounded"></button>
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<!-- Add modal -->
+<p-dialog [(visible)]="display" class="p-p-2">
+  <ng-template pTemplate="header">
+    <h2>Nouvelle fiche</h2>
+  </ng-template>
+  <form [formGroup]="cardForm" (ngSubmit)="addCard()">
+    <div class="p-field p-grid">
+      <label for="table-dateButoire" class="p-col-fixed" style="width:150px">Date butoire</label>
+      <div class="p-col">
+        <input id="table-dateButoire" type="date" pInputText formControlName="dateButoire"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+
+    <div class="p-field p-grid">
+      <label for="table-duree" class="p-col-fixed" style="width:150px">Durée</label>
+      <div class="p-col">
+        <input id="table-duree" type="number" pInputText formControlName="duree"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+
+    <div class="p-field p-grid">
+      <label for="table-lieu" class="p-col-fixed" style="width:150px">Lieu</label>
+      <div class="p-col">
+        <input id="table-lieu" type="text" pInputText formControlName="lieu"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+
+    <div class="p-field p-grid">
+      <label for="table-url" class="p-col-fixed" style="width:150px">Url</label>
+      <div class="p-col">
+        <input id="table-url" type="text" pInputText formControlName="url"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+
+    <div class="p-field p-grid">
+      <label for="table-note" class="p-col-fixed" style="width:150px">Note</label>
+      <div class="p-col">
+        <input id="table-note" type="text" pInputText formControlName="note"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+
+    <label for="users-name" class="p-col-fixed" style="width:150px">Nom utilisateur</label>
+    <div class="p-field p-grid" formArrayName="users"
+         *ngFor="let user of users.controls; let i = index">
+      <div class="p-col" [formGroupName]="i">
+        <input id="users-name" type="text" pInputText formControlName="name"
+               placeholder="user name" class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <label for="table-tags" class="p-col-fixed" style="width:150px">Tag</label>
+      <div class="p-col">
+        <input id="table-tags" type="text" pInputText formControlName="tags"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col">
+        <button pButton type="submit" label="Créer" [disabled]="!cardForm.valid" class="p-d-block p-mx-auto"></button>
+      </div>
+    </div>
+
+
+  </form>
+
+</p-dialog>
+<!-- Add modal --><!--
+<p-dialog [(visible)]="display" class="p-p-2">
+  <ng-template pTemplate="header">
+    <h2>Nouvelle fiche</h2>
+  </ng-template>
+  <form [formGroup]="cardForm" (ngSubmit)="addCard()">
+    <div class="p-field p-grid">
+      <label for="table-dateButoire" class="p-col-fixed" style="width:150px">dateButoire</label>
+      <div class="p-col">
+        <input id="table-dateButoire" type="text" pInputText formControlName="dateButoire"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+    <label for="section1-name" class="p-col-fixed" style="width:150px">Sections</label>
+    <div class="p-field p-grid" formArrayName="sections"
+         *ngFor="let user of users.controls; let i = index">
+      <div class="p-col" [formGroupName]="i">
+        <input id="section1-name" type="text" pInputText formControlName="libelle"
+               placeholder="Section {{(i + 1)}}" class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col">
+        <button pButton type="submit" label="Créer" [disabled]="!cardForm.valid" class="p-d-block p-mx-auto"></button>
+      </div>
+    </div>
+  </form>
+</p-dialog>-->
+<!-- End of add modal -->
+
