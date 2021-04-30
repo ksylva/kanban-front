@@ -10,12 +10,17 @@ import {Kanban, Section, Card} from '../../_models/kanban-model';
 })
 export class TableComponent implements OnInit {
 
+  displayEditSave = false;
+  displayShow = false;
   tableId: number;
   tableName = '';
   sections: Section[] = [];
   cardsSect1: Card[] = [];
   cardsSect2: Card[] = [];
   cardsSect3: Card[] = [];
+  selectedCard: Card;
+
+  cardId: number;
 
   constructor(private kbService: KanbanBoardService, private route: ActivatedRoute,
               private router: Router) { }
@@ -54,6 +59,28 @@ export class TableComponent implements OnInit {
       .subscribe((table) => {
         this.tableName = table.name;
       });
+  }
+
+  getCard(id: number) {
+    this.kbService.getCardById(id)
+      .subscribe((card) => {
+        this.selectedCard = card;
+      });
+  }
+
+  showEditDialog(id: number) {
+    this.cardId = id;
+    if (!this.displayShow) {
+      this.displayEditSave = true;
+    }
+  }
+  showShowDialog(id: number) {
+    this.cardId = id;
+
+    if (!this.displayEditSave) {
+      this.getCard(id);
+      this.displayShow = true;
+    }
   }
 
 }

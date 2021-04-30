@@ -1,77 +1,94 @@
 <div><h1 class="p-text-center">{{ tableName }}</h1></div>
 <div class="p-grid">
-  <div class="p-col-4 p-md-4 drag-column">
+  <div class="p-col-4 p-md-4" style="background-color: beige;">
     <h3 style="border-bottom: gray solid 1px">{{ sections[0].libelle }}</h3>
+    <button pButton class="p-d-block p-mx-auto p-button-outlined p-button-success" label="Ajouter fiche"></button>
     <div *ngFor="let card of cardsSect1">
-      <div class="card-item" pDraggable="cardsSect1">
+      <div class="card-item">
         <div class="card-list-detail">
           <h5 class="p-mb-2">{{ card.note }}</h5>
           <i class="pi pi-map card-site-icon"></i>
           <span class="card-site">{{ card.lieu }}</span>
           <h6 class="p-mb-2">{{ card.url }}</h6>
+          <span class="">
+            <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded
+            p-button-warning p-button-outlined" (click)="showEditDialog(card.idFiche)"></button>
+            <button pButton type="button" icon="pi pi-eye" class="p-button-rounded
+            p-button-info p-button-outlined" (click)="showShowDialog(card.idFiche)"></button>
+          </span>
         </div>
       </div>
     </div>
   </div>
-  <div class="p-col-4 p-md-4 drag-column">
+  <div class="p-col-4 p-md-4" style="background-color: floralwhite;">
     <h3 style="border-bottom: gray solid 1px">{{ sections[1].libelle }}</h3>
+    <button pButton class="p-d-block p-mx-auto p-button-outlined p-button-success" label="Ajouter fiche"></button>
     <div *ngFor="let card of cardsSect2">
-      <div class="card-item" pDraggable="cardsSect2">
+      <div class="card-item">
         <div class="card-list-detail">
           <h5 class="p-mb-2">{{ card.note }}</h5>
           <i class="pi pi-map card-site-icon"></i>
           <span class="card-site">{{ card.lieu }}</span>
           <h6 class="p-mb-2">{{ card.url }}</h6>
+          <span class="">
+            <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded
+            p-button-warning p-button-outlined" (click)="showEditDialog(card.idFiche)"></button>
+            <button pButton type="button" icon="pi pi-eye" class="p-button-rounded
+            p-button-info p-button-outlined" (click)="showShowDialog(card.idFiche)"></button>
+          </span>
         </div>
       </div>
     </div>
   </div>
-  <div class="p-col-4 p-md-4 drag-column">
+  <div class="p-col-4 p-md-4 drag-column" style="background-color: aliceblue;">
     <h3 style="border-bottom: gray solid 1px">{{ sections[2].libelle }}</h3>
+    <button pButton class="p-d-block p-mx-auto p-button-outlined p-button-success" label="Ajouter fiche"></button>
     <div *ngFor="let card of cardsSect3">
-      <div class="card-item" pDraggable="cardsSect2">
+      <div class="card-item">
         <div class="card-list-detail">
           <h5 class="p-mb-2">{{ card.note }}</h5>
           <i class="pi pi-map card-site-icon"></i>
           <span class="card-site">{{ card.lieu }}</span>
           <h6 class="p-mb-2">{{ card.url }}</h6>
+          <span class="">
+            <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded
+            p-button-warning p-button-outlined" (click)="showEditDialog(card.idFiche)"></button>
+            <button pButton type="button" icon="pi pi-eye" class="p-button-rounded
+            p-button-info p-button-outlined" (click)="showShowDialog(card.idFiche)"></button>
+          </span>
         </div>
       </div>
     </div>
   </div>
-  <!--<div class="p-col-12 p-md-6 drop-column" pDroppable="products">-->
 </div>
 
 
-<!--
-<p-table [value]="sections" pDraggable="sections" styleClass="p-datatable-gridlines">
-  <ng-template pTemplate="caption">
-    Header
-  </ng-template>
+<!-- card edit/add dialog -->
+<p-dialog [(visible)]="displayEditSave">
   <ng-template pTemplate="header">
-    <tr>
-      <th *ngFor="let section of sections">{{ section.libelle}}</th>
-    </tr>
+    <h4 class="p-text-center">Modification de fiche</h4>
   </ng-template>
   <ng-template pTemplate="body">
-    <tr *ngFor="let card of cardsSect1">
-      <td>
-        <div>
-          <h5 class="p-mb-2">{{ card.lieu }}</h5>
-          <span>{{ card.note }}</span>
-        </div>
-      </td>
-      &lt;!&ndash;<td>{{ cards.note }}</td>
-      <td>{{ cards.lieu }}</td>
-      <td>{{ cards.url }}</td>
-      <td>card 2</td>
-      <td>card 3</td>
-      <td>{{product.quantity}}</td>&ndash;&gt;
-    </tr>
-  </ng-template>
-  &lt;!&ndash;<ng-template pTemplate="summary">
-    Footer
-  </ng-template>&ndash;&gt;
-</p-table>
+    <form>
 
--->
+    </form>
+  </ng-template>
+</p-dialog>
+<!-- card edit/save dialog -->
+
+<!-- card show dialog -->
+<p-dialog [(visible)]="displayShow">
+  <ng-template pTemplate="header">
+    <h4 class="p-text-center">Détail de la fiche</h4>
+  </ng-template>
+  <ng-template pTemplate="body">
+    <div *ngIf="selectedCard">
+      <p>Lieu : {{ selectedCard.lieu }}</p>
+      <p>URL : {{ selectedCard.url }}</p>
+      <p>Durée : {{ selectedCard.duree }}</p>
+      <p>Date limite : {{ selectedCard.dateButoire | date }}</p>
+    </div>
+  </ng-template>
+
+</p-dialog>
+<!-- card show dialog -->
