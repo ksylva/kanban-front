@@ -40,7 +40,33 @@
     </ng-template>
   </p-table>
 </div>
+<!-- Add modal -->
+<p-dialog [(visible)]="display" class="p-p-2">
+  <ng-template pTemplate="header">
+    <h2>Nouvelle fiche</h2>
+  </ng-template>
+  <form [formGroup]="cardForm" (ngSubmit)="addCard()">
+    <div class="p-field p-grid">
+      <label for="table-dateButoire" class="p-col-fixed" style="width:150px">Date butoire</label>
+      <div class="p-col">
+        <input id="table-dateButoire" type="text" pInputText formControlName="dateButoire"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
 
+    <div class="p-field p-grid">
+      <label for="table-duree" class="p-col-fixed" style="width:150px">Durée</label>
+      <div class="p-col">
+        <input id="table-duree" type="text" pInputText formControlName="duree"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+
+  </form>
+
+</p-dialog>
 <!-- Add modal --><!--
 <p-dialog [(visible)]="display" class="p-p-2">
   <ng-template pTemplate="header">
