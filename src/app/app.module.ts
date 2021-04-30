@@ -7,6 +7,7 @@ import {DialogModule} from 'primeng/dialog';
 import {ToastModule} from 'primeng/toast';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {DragDropModule} from 'primeng/dragdrop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +47,7 @@ import { TableComponent } from './components/table/table.component';
     ToastModule,
     MessagesModule,
     MessageModule,
+    DragDropModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
