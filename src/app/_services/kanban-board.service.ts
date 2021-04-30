@@ -27,7 +27,10 @@ export class KanbanBoardService {
     return this.httpClient.get<Card[]>(this.rootUrl + '/cards');
   }
 
-  saveCard(value: Card) {
+  /*saveCard(value: Card) {
     return this.httpClient.post( this.rootUrl + '/board/add', value);
+  }*/
+  saveCard(card: Card): Observable<Card> {
+    return this.httpClient.post<Card>(this.rootUrl + '/card/add', card);
   }
 }
