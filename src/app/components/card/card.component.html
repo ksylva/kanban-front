@@ -49,7 +49,7 @@
     <div class="p-field p-grid">
       <label for="table-dateButoire" class="p-col-fixed" style="width:150px">Date butoire</label>
       <div class="p-col">
-        <input id="table-dateButoire" type="text" pInputText formControlName="dateButoire"
+        <input id="table-dateButoire" type="date" pInputText formControlName="dateButoire"
                class="ng-dirty ng-invalid p-mr-2" required>
         <p-message severity="error"></p-message>
       </div>
@@ -58,11 +58,62 @@
     <div class="p-field p-grid">
       <label for="table-duree" class="p-col-fixed" style="width:150px">Durée</label>
       <div class="p-col">
-        <input id="table-duree" type="text" pInputText formControlName="duree"
+        <input id="table-duree" type="number" pInputText formControlName="duree"
                class="ng-dirty ng-invalid p-mr-2" required>
         <p-message severity="error"></p-message>
       </div>
     </div>
+
+    <div class="p-field p-grid">
+      <label for="table-lieu" class="p-col-fixed" style="width:150px">Lieu</label>
+      <div class="p-col">
+        <input id="table-lieu" type="text" pInputText formControlName="lieu"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+
+    <div class="p-field p-grid">
+      <label for="table-url" class="p-col-fixed" style="width:150px">Url</label>
+      <div class="p-col">
+        <input id="table-url" type="text" pInputText formControlName="url"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+
+    <div class="p-field p-grid">
+      <label for="table-note" class="p-col-fixed" style="width:150px">Note</label>
+      <div class="p-col">
+        <input id="table-note" type="text" pInputText formControlName="note"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+
+    <label for="users-name" class="p-col-fixed" style="width:150px">Nom utilisateur</label>
+    <div class="p-field p-grid" formArrayName="users"
+         *ngFor="let user of users.controls; let i = index">
+      <div class="p-col" [formGroupName]="i">
+        <input id="users-name" type="text" pInputText formControlName="name"
+               placeholder="user name" class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <label for="table-tags" class="p-col-fixed" style="width:150px">Tag</label>
+      <div class="p-col">
+        <input id="table-tags" type="text" pInputText formControlName="tags"
+               class="ng-dirty ng-invalid p-mr-2" required>
+        <p-message severity="error"></p-message>
+      </div>
+    </div>
+    <div class="p-field p-grid">
+      <div class="p-col">
+        <button pButton type="submit" label="Créer" [disabled]="!cardForm.valid" class="p-d-block p-mx-auto"></button>
+      </div>
+    </div>
+
 
   </form>
 
