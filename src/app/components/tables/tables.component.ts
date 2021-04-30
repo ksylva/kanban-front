@@ -45,6 +45,7 @@ export class TablesComponent implements OnInit {
     this.kbService.getBoards()
       .subscribe((data) => {
         data.forEach((value) => {
+          // console.log('L\identifiant: ' + value.idKanbanBoard);
           this.tables.push(value);
         });
       });

@@ -1,1 +1,77 @@
-<p>table works!</p>
+<div><h1 class="p-text-center">{{ tableName }}</h1></div>
+<div class="p-grid">
+  <div class="p-col-4 p-md-4 drag-column">
+    <h3 style="border-bottom: gray solid 1px">{{ sections[0].libelle }}</h3>
+    <div *ngFor="let card of cardsSect1">
+      <div class="card-item" pDraggable="cardsSect1">
+        <div class="card-list-detail">
+          <h5 class="p-mb-2">{{ card.note }}</h5>
+          <i class="pi pi-map card-site-icon"></i>
+          <span class="card-site">{{ card.lieu }}</span>
+          <h6 class="p-mb-2">{{ card.url }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-col-4 p-md-4 drag-column">
+    <h3 style="border-bottom: gray solid 1px">{{ sections[1].libelle }}</h3>
+    <div *ngFor="let card of cardsSect2">
+      <div class="card-item" pDraggable="cardsSect2">
+        <div class="card-list-detail">
+          <h5 class="p-mb-2">{{ card.note }}</h5>
+          <i class="pi pi-map card-site-icon"></i>
+          <span class="card-site">{{ card.lieu }}</span>
+          <h6 class="p-mb-2">{{ card.url }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-col-4 p-md-4 drag-column">
+    <h3 style="border-bottom: gray solid 1px">{{ sections[2].libelle }}</h3>
+    <div *ngFor="let card of cardsSect3">
+      <div class="card-item" pDraggable="cardsSect2">
+        <div class="card-list-detail">
+          <h5 class="p-mb-2">{{ card.note }}</h5>
+          <i class="pi pi-map card-site-icon"></i>
+          <span class="card-site">{{ card.lieu }}</span>
+          <h6 class="p-mb-2">{{ card.url }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--<div class="p-col-12 p-md-6 drop-column" pDroppable="products">-->
+</div>
+
+
+<!--
+<p-table [value]="sections" pDraggable="sections" styleClass="p-datatable-gridlines">
+  <ng-template pTemplate="caption">
+    Header
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let section of sections">{{ section.libelle}}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body">
+    <tr *ngFor="let card of cardsSect1">
+      <td>
+        <div>
+          <h5 class="p-mb-2">{{ card.lieu }}</h5>
+          <span>{{ card.note }}</span>
+        </div>
+      </td>
+      &lt;!&ndash;<td>{{ cards.note }}</td>
+      <td>{{ cards.lieu }}</td>
+      <td>{{ cards.url }}</td>
+      <td>card 2</td>
+      <td>card 3</td>
+      <td>{{product.quantity}}</td>&ndash;&gt;
+    </tr>
+  </ng-template>
+  &lt;!&ndash;<ng-template pTemplate="summary">
+    Footer
+  </ng-template>&ndash;&gt;
+</p-table>
+
+-->

@@ -9,7 +9,7 @@ import {KanbanBoardService} from './_services/kanban-board.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'kanban-front';
+  title = 'Kanban board web application';
 
   items: MenuItem[] = [];
 
