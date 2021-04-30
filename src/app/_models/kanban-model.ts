@@ -36,3 +36,8 @@ export interface BoardInfo {
 export interface SectionInfo {
   libelle: string;
 }
+
+export interface Tag {
+  idTag: number;
+  libelle: string;
+}
