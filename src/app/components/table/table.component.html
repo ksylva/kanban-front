@@ -2,7 +2,8 @@
 <div class="p-grid">
   <div class="p-col-4 p-md-4" style="background-color: beige;">
     <h3 style="border-bottom: gray solid 1px">{{ sections[0].libelle }}</h3>
-    <button pButton class="p-d-block p-mx-auto p-button-outlined p-button-success" label="Ajouter fiche"></button>
+    <button pButton class="p-d-block p-mx-auto p-button-outlined p-button-success"
+            label="Ajouter fiche" (click)="showSaveDialog(sections[0].idSection)"></button>
     <div *ngFor="let card of cardsSect1">
       <div class="card-item">
         <div class="card-list-detail">
@@ -22,7 +23,8 @@
   </div>
   <div class="p-col-4 p-md-4" style="background-color: floralwhite;">
     <h3 style="border-bottom: gray solid 1px">{{ sections[1].libelle }}</h3>
-    <button pButton class="p-d-block p-mx-auto p-button-outlined p-button-success" label="Ajouter fiche"></button>
+    <button pButton class="p-d-block p-mx-auto p-button-outlined p-button-success"
+            label="Ajouter fiche" (click)="showSaveDialog(sections[1].idSection)"></button>
     <div *ngFor="let card of cardsSect2">
       <div class="card-item">
         <div class="card-list-detail">
@@ -42,7 +44,8 @@
   </div>
   <div class="p-col-4 p-md-4 drag-column" style="background-color: aliceblue;">
     <h3 style="border-bottom: gray solid 1px">{{ sections[2].libelle }}</h3>
-    <button pButton class="p-d-block p-mx-auto p-button-outlined p-button-success" label="Ajouter fiche"></button>
+    <button pButton class="p-d-block p-mx-auto p-button-outlined p-button-success"
+            label="Ajouter fiche" (click)="showSaveDialog(sections[2].idSection)"></button>
     <div *ngFor="let card of cardsSect3">
       <div class="card-item">
         <div class="card-list-detail">
@@ -62,9 +65,51 @@
   </div>
 </div>
 
+<!-- card edit/add dialog -->
+<p-dialog header="Nouvelle fiche" [(visible)]="displaySave" [style]="{width: '700px', height: '435px'}">
+  <ng-template pTemplate="body">
+    <form [formGroup]="form" (ngSubmit)="addCard()">
+      <div class="p-field p-grid">
+        <label for="limit">Date butoire</label>
+        <div class="p-col">
+          <p-calendar [(ngModel)]="date" [showIcon]="true" id="limit" formControlName="dateButoire"></p-calendar>
+        </div>
+        <label for="duree">Durée</label>
+        <div class="p-col">
+          <input type="text" pInputText id="duree" formControlName="duree"
+                 required>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <label for="lieu">Lieu</label>
+        <div class="p-col">
+          <input type="text" pInputText id="lieu" formControlName="lieu"
+                 required>
+        </div>
+        <label for="url">URL</label>
+        <div class="p-col">
+          <input type="text" pInputText id="url" formControlName="url"
+                 required>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <label for="note">Note</label>
+        <div class="p-col">
+          <textarea formControlName="note" id="note" cols="50" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <div class="p-col">
+          <button pButton type="submit" label="Enregistrer" [disabled]="!form.valid" class="p-d-block p-mx-auto"></button>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+</p-dialog>
+<!-- card edit/save dialog -->
 
 <!-- card edit/add dialog -->
-<p-dialog [(visible)]="displayEditSave">
+<p-dialog [(visible)]="displayEdit">
   <ng-template pTemplate="header">
     <h4 class="p-text-center">Modification de fiche</h4>
   </ng-template>
@@ -77,16 +122,17 @@
 <!-- card edit/save dialog -->
 
 <!-- card show dialog -->
-<p-dialog [(visible)]="displayShow">
+<p-dialog [(visible)]="displayShow" [style]="{width: '700px', height: '365px'}">
   <ng-template pTemplate="header">
     <h4 class="p-text-center">Détail de la fiche</h4>
   </ng-template>
   <ng-template pTemplate="body">
     <div *ngIf="selectedCard">
-      <p>Lieu : {{ selectedCard.lieu }}</p>
-      <p>URL : {{ selectedCard.url }}</p>
-      <p>Durée : {{ selectedCard.duree }}</p>
-      <p>Date limite : {{ selectedCard.dateButoire | date }}</p>
+      <p><strong>Lieu :</strong> {{ selectedCard.lieu }}</p>
+      <p><strong>URL :</strong> {{ selectedCard.url }}</p>
+      <p><strong>Durée :</strong> {{ selectedCard.duree }}</p>
+      <p><strong>Date limite :</strong> {{ selectedCard.dateButoire | date }}</p>
+      <p><strong>Note:</strong> {{ selectedCard.note }}</p>
     </div>
   </ng-template>
 

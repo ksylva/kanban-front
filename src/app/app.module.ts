@@ -7,7 +7,7 @@ import {DialogModule} from 'primeng/dialog';
 import {ToastModule} from 'primeng/toast';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
-import {DragDropModule} from 'primeng/dragdrop';
+import {CalendarModule} from 'primeng/calendar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserComponent } from './components/user/user.component';
 import { CardComponent } from './components/card/card.component';
 import { TagComponent } from './components/tag/tag.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
 import {RippleModule} from 'primeng/ripple';
 import {MessageService} from 'primeng/api';
@@ -47,7 +47,8 @@ import { TableComponent } from './components/table/table.component';
     ToastModule,
     MessagesModule,
     MessageModule,
-    DragDropModule,
+    CalendarModule,
+    FormsModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
