@@ -28,6 +28,10 @@ export class KanbanBoardService {
     return this.httpClient.get<Card[]>(this.rootUrl + '/cards');
   }
 
+  getCardById(id: number): Observable<Card> {
+    return this.httpClient.get<Card>(this.rootUrl + '/card/' + id);
+  }
+
   /*saveCard(value: Card) {
     return this.httpClient.post( this.rootUrl + '/board/add', value);
   }*/
