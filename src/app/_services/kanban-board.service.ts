@@ -39,12 +39,21 @@ export class KanbanBoardService {
     return this.httpClient.get<Tag[]>(this.rootUrl + '/tags');
   }
   saveTag(tag: Tag) {
-    return this.httpClient.post<Tag>(this.rootUrl + '/card/add', tag);
+    return this.httpClient.post<Tag>(this.rootUrl + '/tag/add', tag);
   }
   getTable(tableId: number): Observable<Kanban> {
     return this.httpClient.get<Kanban>(this.rootUrl + '/board/' + tableId);
   }
   getSectionsOfTable(tableId: number): Observable<Section[]> {
     return this.httpClient.get<Section[]>(this.rootUrl + '/sections/' + tableId);
+  }
+  deleteTag(idTag: number): Observable<Tag> {
+    return this.httpClient.delete<Tag>(this.rootUrl + '/tag/delete/' + idTag);
+  }
+  getTagById(idTag: number): Observable<Tag> {
+    return this.httpClient.get<Tag>(this.rootUrl + '/tag/' + idTag);
+  }
+  updateTag(tag: Tag): Observable<Tag> {
+    return this.httpClient.put<Tag>(this.rootUrl + '/tag/edit/' , tag);
   }
 }
