@@ -21,7 +21,8 @@
         <td>{{tag.libelleTag}}</td>
         <td>
           <span class="p-buttonset">
-              <button pButton type="button" label="Afficher" icon="pi pi-eye" class="p-button-rounded p-mr-1"></button>
+              <button pButton type="button" label="Afficher" icon="pi pi-eye" class="p-button-rounded p-mr-1" routerLink="/tag/{{ tag.idTag }}"
+                      routerLinkActive="active"></button>
               <button pButton type="button" label="Editer" icon="pi pi-pencil" class="p-button-rounded p-mr-1" (click)="editTag(tag)"></button>
               <button pButton type="button" label="Supprimer" icon="pi pi-trash" class="p-button-rounded" (click)="deleteTag(tag)"></button>
           </span>
