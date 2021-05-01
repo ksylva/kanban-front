@@ -100,7 +100,7 @@ export class CardComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   showToast() {
-    this.messageService.add({severity: 'success', summary: 'Info', detail: 'Votre tableau a été ajouté'});
+    this.messageService.add({severity: 'success', summary: 'Info', detail: 'Votre fiche a été ajoutée'});
   }
 
   // tslint:disable-next-line:typedef

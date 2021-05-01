@@ -19,6 +19,7 @@ export interface Card {
   note: string;
   user: User[];
   tags: any[];
+  section: Section[];
 }
 export interface CardInfo {
   idFiche: number;
@@ -27,7 +28,7 @@ export interface CardInfo {
   lieu: string;
   url: string;
   note: string;
-  section: Section;
+  section: Section[];
 }
 
 export interface User {
@@ -48,5 +49,5 @@ export interface SectionInfo {
 
 export interface Tag {
   idTag: number;
-  libelle: string;
+  libelleTag: string;
 }
